@@ -61,7 +61,7 @@ export function MenuForm({ isOpen, onClose, item }: MenuFormProps) {
           categoryId:
             typeof item.categoryId === "string"
               ? item.categoryId
-              : item.categoryId._id,
+              : item.categoryId.id,
           tags: item.tags.join(", "),
         }
       : {
@@ -83,7 +83,7 @@ export function MenuForm({ isOpen, onClose, item }: MenuFormProps) {
         tags: data.tags ? data.tags.split(",").map((tag) => tag.trim()) : [],
       };
       return isEdit
-        ? menuApi.update(item._id, payload)
+        ? menuApi.update(item.id, payload)
         : menuApi.create(payload);
     },
     onSuccess: () => {
@@ -137,7 +137,7 @@ export function MenuForm({ isOpen, onClose, item }: MenuFormProps) {
             <select {...register("categoryId")} className="input">
               <option value="">Select category</option>
               {categories.map((cat) => (
-                <option key={cat._id} value={cat._id}>
+                <option key={cat.id} value={cat.id}>
                   {cat.name}
                 </option>
               ))}

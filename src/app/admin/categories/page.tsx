@@ -103,7 +103,7 @@ export default function CategoriesPage() {
         <div className="grid gap-3 sm:gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {categories.map((category: Category, index) => (
             <motion.div
-              key={category._id}
+              key={category.id}
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: index * 0.05 }}
@@ -197,7 +197,7 @@ export default function CategoriesPage() {
         <ConfirmDialog
           isOpen={!!deleteCategory}
           onClose={() => setDeleteCategory(null)}
-          onConfirm={() => deleteMutation.mutate(deleteCategory._id)}
+          onConfirm={() => deleteMutation.mutate(deleteCategory.id)}
           title="Delete Category"
           message={`Delete "${deleteCategory.name}"? This may affect menu items.`}
           variant="danger"

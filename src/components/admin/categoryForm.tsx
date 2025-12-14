@@ -14,17 +14,10 @@ import toast from "react-hot-toast";
 
 const categoryFormSchema = z.object({
   name: z.string().min(2, "Name must be at least 2 characters"),
-  description: z.string().optional(),
-  image: z
-    .string()
-    .optional()
-    .transform((v) => v ?? ""),
-  isActive: z
-    .boolean()
-    .optional()
-    .transform((v) => v ?? true),
+  description: z.string().optional().default(""),
+  image: z.string().optional().default(""),
+  isActive: z.boolean().optional().default(true),
 });
-
 
 type CategoryFormData = z.infer<typeof categoryFormSchema>;
 
@@ -43,7 +36,7 @@ export function CategoryForm({ isOpen, onClose, category }: CategoryFormProps) {
     handleSubmit,
     formState: { errors },
     reset,
-  } = useForm<CategoryFormData>({
+  } = useForm({
     resolver: zodResolver(categoryFormSchema),
     defaultValues: {
       name: category?.name ?? "",
@@ -55,9 +48,7 @@ export function CategoryForm({ isOpen, onClose, category }: CategoryFormProps) {
 
   const mutation = useMutation({
     mutationFn: (data: CategoryFormData) =>
-      isEdit
-        ? categoryApi.update(category._id, data)
-        : categoryApi.create(data),
+      isEdit ? categoryApi.update(category.id, data) : categoryApi.create(data),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: [CACHE_KEYS.CATEGORIES] });
       queryClient.invalidateQueries({ queryKey: [CACHE_KEYS.MENU_ITEMS] });

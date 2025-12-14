@@ -69,7 +69,7 @@ export function Cart() {
                     <div className="space-y-4">
                       {items.map((item) => (
                         <motion.div
-                          key={`${item.menuItem._id}-${item.variant.name}`}
+                          key={`${item.menuItem.id}-${item.variant.name}`}
                           layout
                           initial={{ opacity: 0, y: 20 }}
                           animate={{ opacity: 1, y: 0 }}
@@ -115,7 +115,7 @@ export function Cart() {
                                 <button
                                   onClick={() =>
                                     updateQuantity(
-                                      item.menuItem._id,
+                                      item.menuItem.id,
                                       item.variant.name,
                                       item.quantity - 1
                                     )
@@ -130,7 +130,7 @@ export function Cart() {
                                 <button
                                   onClick={() =>
                                     updateQuantity(
-                                      item.menuItem._id,
+                                      item.menuItem.id,
                                       item.variant.name,
                                       item.quantity + 1
                                     )
@@ -142,7 +142,7 @@ export function Cart() {
                                 <button
                                   onClick={() =>
                                     removeItem(
-                                      item.menuItem._id,
+                                      item.menuItem.id,
                                       item.variant.name
                                     )
                                   }

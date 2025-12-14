@@ -28,7 +28,7 @@ export const useCartStore = create<CartStore>()(
         set((state) => {
           const existingItem = state.items.find(
             (item) =>
-              item.menuItem._id === menuItem._id &&
+              item.menuItem.id === menuItem.id &&
               item.variant.name === variant.name
           );
 
@@ -36,7 +36,7 @@ export const useCartStore = create<CartStore>()(
             toast.success(`Updated ${menuItem.name} quantity`);
             return {
               items: state.items.map((item) =>
-                item.menuItem._id === menuItem._id &&
+                item.menuItem.id === menuItem.id &&
                 item.variant.name === variant.name
                   ? { ...item, quantity: item.quantity + quantity }
                   : item
@@ -56,7 +56,7 @@ export const useCartStore = create<CartStore>()(
           items: state.items.filter(
             (item) =>
               !(
-                item.menuItem._id === menuItemId &&
+                item.menuItem.id === menuItemId &&
                 item.variant.name === variantName
               )
           ),
@@ -72,7 +72,7 @@ export const useCartStore = create<CartStore>()(
 
         set((state) => ({
           items: state.items.map((item) =>
-            item.menuItem._id === menuItemId &&
+            item.menuItem.id === menuItemId &&
             item.variant.name === variantName
               ? { ...item, quantity }
               : item
@@ -99,7 +99,7 @@ export const useCartStore = create<CartStore>()(
       getItem: (menuItemId, variantName) => {
         return get().items.find(
           (item) =>
-            item.menuItem._id === menuItemId &&
+            item.menuItem.id === menuItemId &&
             item.variant.name === variantName
         );
       },

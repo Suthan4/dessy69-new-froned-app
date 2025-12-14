@@ -86,7 +86,7 @@ export function CheckoutModal() {
     try {
       // Convert cart items to order items
       const orderItems: OrderItem[] = items.map((item) => ({
-        menuItemId: item.menuItem._id,
+        menuItemId: item.menuItem.id,
         name: item.menuItem.name,
         variantName: item.variant.name,
         price: item.variant.price,

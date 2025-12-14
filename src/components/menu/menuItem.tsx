@@ -23,7 +23,7 @@ export function MenuItem({ item }: MenuItemProps) {
   const [quantity, setQuantity] = useState(1);
   const { addToCart, getItem } = useCart();
 
-  const cartItem = getItem(item._id, selectedVariant.name);
+  const cartItem = getItem(item.id, selectedVariant.name);
   const inCart = !!cartItem;
 
   const handleAddToCart = () => {

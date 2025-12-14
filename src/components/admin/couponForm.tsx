@@ -61,7 +61,7 @@ export function CouponForm({ isOpen, onClose, coupon }: CouponFormProps) {
     watch,
     formState: { errors },
     reset,
-  } = useForm<CouponFormData>({
+  } = useForm({
     resolver: zodResolver(couponFormSchema),
     defaultValues: coupon
       ? {

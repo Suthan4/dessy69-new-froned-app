@@ -130,7 +130,7 @@ export default function MenuPage() {
       ) : (
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {menuItems.map((item: MenuItem) => (
-            <Card key={item._id} className="overflow-hidden">
+            <Card key={item.id} className="overflow-hidden">
               {/* Image */}
               <div className="relative aspect-square bg-neutral-100 dark:bg-neutral-800">
                 {item.image ? (
@@ -218,7 +218,7 @@ export default function MenuPage() {
         <ConfirmDialog
           isOpen={!!deleteItem}
           onClose={() => setDeleteItem(null)}
-          onConfirm={() => deleteMutation.mutate(deleteItem._id)}
+          onConfirm={() => deleteMutation.mutate(deleteItem.id)}
           title="Delete Menu Item"
           message={`Are you sure you want to delete "${deleteItem.name}"? This action cannot be undone.`}
           variant="danger"
